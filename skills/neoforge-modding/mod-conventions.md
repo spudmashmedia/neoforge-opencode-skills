@@ -6,7 +6,7 @@ compatibility: opencode
 license: MIT
 metadata:
   author: Spudmash Media
-  version: "1.0" 
+  version: "1.1" 
 ---
 --->
 # Neoforge Modding - Mod Conventions
@@ -64,6 +64,18 @@ public static final Deferred registries.EntityType CUSTOM_ENTITY = ENTITIES.regi
             .sized(0.6f, 1.8f)
             .build("custom_entity")));
 ```
+
+## 🔍 API Validation Requirement
+**MANDATORY**: For any of these patterns, validate against NeoForge API first:
+
+|Pattern|	Tool Call Required|	Notes|
+|---|---|---|
+|DeferredRegister.Items|	✅ Already validated|	Safe to use from this doc|
+|ProjectileWeaponItem|	🚨 ALWAYS CALL TOOL|	Not publicly documented|
+|DataComponents|	🚨 ALWAYS CALL TOOL|	Version-sensitive API|
+|SoundEvents|	🚨 ALWAYS CALL TOOL|	Player interaction patterns vary by version|
+
+**Version Check**: Always verify against minecraft_version=1.21.11 in gradle.properties before implementing patterns not covered by existing skills.
 
 ### ✅ Common Setup Pattern
 Register event listeners in the main constructor:

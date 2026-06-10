@@ -6,7 +6,7 @@ compatibility: opencode
 license: MIT
 metadata:
   author: Spudmash Media
-  version: "1.0" 
+  version: "1.1" 
 ---
 --->
 # Neoforge Modding - Custom Item Creation Guide
@@ -17,6 +17,8 @@ This guide helps create new custom items quickly and consistently following the 
 ## 📦 Item Types
 
 ### 1. **Food Items** (extends `Item`)
+
+**DO NOT GUESS:** If unsure about FoodProperties API, call the tool first.
 
 **When to use:** Edible items with nutrition and saturation bonuses
 
@@ -53,6 +55,16 @@ public static final DeferredItem<CustomFoodItem> CUSTOM_FOOD = ITEMS.registerIte
 ```
 
 ### 2. **Projectile Weapons** (extends `ProjectileWeaponItem`)
+
+####🚨 API Validation Required Before Implementation
+
+**MANDATORY TOOL CALLS REQUIRED**:
+
+- search_neoforge_api("ProjectileWeaponItem shootFromRotation") for shooting patterns
+- search_neoforge_api("Level isClientSide ItemStack getProjectile shrink") for ammo logic
+- search_neoforge_api("SoundEvents COMPARATOR_CLICK BUBBLE_POP player sound source") for feedback sounds
+
+**DO NOT GUESS**: ProjectileWeaponItem API is not publicly documented - validate every method.
 
 **When to use:** Items that shoot projectile entities (like Ejectinator, BeamRifle)
 
@@ -120,6 +132,15 @@ public class CustomProjectileItem extends ProjectileWeaponItem {
 ```
 
 ### 3. **Special Use Items** (extends `Item`)
+
+#### 🚨 API Validation Required Before Implementation
+
+Before implementing special items, validate:
+- search_neoforge_api("InteractionResult use Level Player InteractionHand stack") for custom use logic
+- search_neoforge_api("DataComponents CUSTOM_NAME component") for item naming
+- search_neoforge_api("Item Properties fireResistant rarity 1.21.11") for special properties
+
+**DO NOT GUESS**: Custom use patterns vary significantly by version - validate before implementing.
 
 **When to use:** Items with unique mechanics (like PhoneItem)
 

@@ -12,7 +12,6 @@ This repository contains a modular bundle of OpenCode skills designed to assist 
 * **`build-and-testing.md`**: Environment setup and Gradle compile rules.
 
 ## Installation
-
 To use these skills globally with OpenCode on your local machine, clone this repository and symlink the bundle into your configuration directory:
 
 ```bash
